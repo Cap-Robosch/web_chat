@@ -1,13 +1,25 @@
 import { useState } from "react";
 import axios from "axios";
 
-const NewlineText = ({ text }: { text: string }) => {
-  if (text === ""){
+const TalkArea = ({ text }: { text: string }) => {
+  if (text === "") {
     return <div className="text-gray-700">Faça uma pergunta!</div>
   }
+
   const newText = text.split("\n").map((str) => <p>{str}</p>);
+  
   return <div>{newText}</div>;
 };
+
+const LoadingDots = () => {
+  return (
+    <div className="flex">
+      <div className="h-2.5 w-2.5 bg-purple-500 rounded-full mr-1 animate-bounce"></div>
+      <div className="h-2.5 w-2.5 bg-purple-500 rounded-full mr-1 animate-bounce200"></div>
+      <div className="h-2.5 w-2.5 bg-purple-500 rounded-full animate-bounce400"></div>
+    </div>
+  )
+}
 
 function App() {
   const [inputMessage, setInputMessage] = useState("");
@@ -16,6 +28,7 @@ function App() {
 
   const sendMessage = async () => {
     setLoading(true);
+    setInputMessage("");
     await axios
       .post("http://localhost:3000/", {
         text: inputMessage,
@@ -23,22 +36,16 @@ function App() {
       })
       .then((e) => {
         setLoading(false);
-        console.log(e);
         setRoboschAnswer(e.data);
-        setInputMessage("");
       });
   };
 
   return (
     <div className="flex flex-col gap-5 px-10 items-center justify-center h-screen w-screen">
       {loading ? (
-        <div className="flex">
-          <div className="h-2.5 w-2.5 bg-purple-500 rounded-full mr-1 animate-bounce"></div>
-          <div className="h-2.5 w-2.5 bg-purple-500 rounded-full mr-1 animate-bounce200"></div>
-          <div className="h-2.5 w-2.5 bg-purple-500 rounded-full animate-bounce400"></div>
-        </div>
+        <LoadingDots />
       ) : (
-        <NewlineText text={roboschAnswer} />
+        <TalkArea text={roboschAnswer} />
       )}
       <div className="flex gap-2">
         <input
