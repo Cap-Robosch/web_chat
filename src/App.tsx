@@ -32,7 +32,7 @@ function App() {
 
 
   return (
-    <div className="flex gap-5 bg-gray-200 h-screen w-screen">
+    <div className="flex gap-5 font-fonte bg-gray-200 h-screen w-screen">
         <Sidebar />
       <div className="pl-72 pb-80 h-screen w-full">
       {loading ? <LoadingDots /> : null}

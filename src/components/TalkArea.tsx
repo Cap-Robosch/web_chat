@@ -4,7 +4,7 @@ export const TalkArea = ({
   text: { text: string; sender: string }[];
 }) => {
   return (
-    <div className={`lg:w-full h-full flex flex-col space-y-8 px-16 py-5`}>
+    <div className={`font-fonte lg:w-full h-full flex flex-col space-y-8 px-16 py-5`}>
       {text.map((msg) => (
         <p
           className={`${

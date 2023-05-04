@@ -7,6 +7,12 @@ export default {
         bounce200: "bounce 1s infinite 200ms",
         bounce400: "bounce 1s infinite 400ms",
       },
+      colors:{
+        'purple': '#9139D3',
+      },
+      fontFamily:{
+        'fonte': 'Poppins, sans-serif',
+      },
     },
   },
   plugins: [],
