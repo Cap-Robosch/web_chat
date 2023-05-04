@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { Sidebar } from "./components/Sidebar";
-import { LoadingDots } from "./components/LoadingDots";
 import { TalkArea } from "./components/TalkArea";
 
 function App() {
@@ -32,12 +31,11 @@ function App() {
 
 
   return (
-    <div className="flex gap-5 bg-gray-200 h-screen w-screen">
+    <div className="flex gap-5 h-screen w-screen bg-gray-200">
         <Sidebar />
-      <div className="pl-72 pb-80 h-screen w-full">
-      {loading ? <LoadingDots /> : null}
-      <TalkArea text={showMessage} />
-      <div className="flex gap-2 px-12 fixed bottom-5 right-3 lg:w-10/12">
+      <div className="pl-72 pb-80 h-screen w-full box-border bg-cover">
+      <TalkArea loading={loading} text={showMessage} />
+      <div className="flex gap-2 px-12 fixed bottom-5 right-3 md:w-9/12 2xl:w-10/12">
         <div className="relative w-full flex items-center">
           <input
             onKeyDown={(e) => {
