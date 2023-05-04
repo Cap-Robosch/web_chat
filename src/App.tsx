@@ -6,13 +6,14 @@ import { TalkArea } from "./components/TalkArea";
 
 function App() {
   const [inputMessage, setInputMessage] = useState("");
-  const [roboschAnswer, setRoboschAnswer] = useState("");
-  const [showMessage, setShowMessage] = useState<string[]>([""])
+  const [showMessage, setShowMessage] = useState<
+    { text: string; sender: string }[]
+  >([]);
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
     setLoading(true);
-    setShowMessage((prev) => [...prev, inputMessage])
+    setShowMessage((prev) => [...prev, { text: inputMessage, sender: "User" }]);
     setInputMessage("");
     await axios
       .post("http://localhost:3000/", {
@@ -21,26 +22,22 @@ function App() {
       })
       .then((e) => {
         setLoading(false);
-        setRoboschAnswer(e.data);
-        setShowMessage((prev) => [...prev, e.data])
+        console.log(e);
+        setShowMessage((prev) => [
+          ...prev,
+          { text: e.data, sender: "Robosch" },
+        ]);
       });
   };
 
-  const sla=()=>{
-    console.log(showMessage)
-  }
 
   return (
-    <div className="flex gap-5 bg-gray-200 items-center justify-center h-screen w-screen">
-      <div className="w-80 h-full">
+    <div className="flex gap-5 bg-gray-200 h-screen w-screen">
         <Sidebar />
-      </div>
-      {loading ? (
-        <LoadingDots />
-      ) : (
-        <TalkArea text={roboschAnswer} />
-      )}
-      <div className="flex gap-2 px-12 fixed bottom-5 right-3 lg:w-9/12">
+      <div className="pl-72 pb-80 h-screen w-full">
+      {loading ? <LoadingDots /> : null}
+      <TalkArea text={showMessage} />
+      <div className="flex gap-2 px-12 fixed bottom-5 right-3 lg:w-10/12">
         <div className="relative w-full flex items-center">
           <input
             onKeyDown={(e) => {
@@ -54,6 +51,7 @@ function App() {
             onChange={(e) => setInputMessage(e.target.value)}
             type="text"
           />
+
           <button
             type="submit"
             onClick={sendMessage}
@@ -62,8 +60,8 @@ function App() {
             <img className="w-6" src="./icon_send.svg" />
           </button>
         </div>
-        <button onClick={sla} className="w-80 bg-red-500">Ts</button>
 
+      </div>
       </div>
     </div>
   );
