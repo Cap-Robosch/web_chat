@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Sidebar } from "./components/Sidebar";
-import { LoadingDots } from "./components/LoadingDots";
 import { TalkArea } from "./components/TalkArea";
 
 function App() {
@@ -12,58 +11,70 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
-    setLoading(true);
-    setShowMessage((prev) => [...prev, { text: inputMessage, sender: "User" }]);
-    setInputMessage("");
-    await axios
-      .post("http://localhost:3000/", {
-        text: inputMessage,
-        userId: "vinicius",
-      })
-      .then((e) => {
-        setLoading(false);
-        console.log(e);
-        setShowMessage((prev) => [
-          ...prev,
-          { text: e.data, sender: "Robosch" },
-        ]);
-      });
+    if(inputMessage!==""){
+      setLoading(true);
+      setShowMessage((prev) => [...prev, { text: inputMessage, sender: "User" }]);
+      setInputMessage("");
+      await axios
+        .post("http://localhost:3000/", {
+          text: inputMessage,
+          userId: "vinicius",
+        })
+        .then((e) => {
+          setLoading(false);
+          console.log(e);
+          setShowMessage((prev) => [
+            ...prev,
+            { text: e.data, sender: "Robosch" },
+          ]);
+      const windowMessage = document.getElementById("messageWindow")
+          if (windowMessage){
+            windowMessage.scrollTop = windowMessage.scrollHeight - windowMessage.clientHeight;
+          }
+        });
+    }
   };
 
+  useEffect(()=>{
+    const windowMessage = document.getElementById("messageWindow")
+          if (windowMessage){
+            windowMessage.scrollTop = windowMessage.scrollHeight - windowMessage.clientHeight;
+          }
+  },[sendMessage, showMessage])
 
   return (
-    <div className="flex gap-5 font-fonte bg-gray-200 h-screen w-screen">
+    <main>
+      <div className="flex font-fonte gap-5 ">
         <Sidebar />
-      <div className="pl-72 pb-80 h-screen w-full">
-      {loading ? <LoadingDots /> : null}
-      <TalkArea text={showMessage} />
-      <div className="flex gap-2 px-12 fixed bottom-5 right-3 lg:w-10/12">
-        <div className="relative w-full flex items-center">
-          <input
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                sendMessage();
-              }
-            }}
-            placeholder="Escreva sua mensagem aqui..."
-            className="p-3 px-4 bg-white outline-none rounded-full w-full"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            type="text"
-          />
+        <div className="pl-72 pb-80 h-screen w-full box-border bg-cover">
+          <TalkArea loading={loading} text={showMessage} />
+          <div className="flex gap-2 px-12 fixed bottom-5 right-3 md:w-9/12 2xl:w-10/12">
+            <div className="relative w-full flex items-center">
+              <input
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+                placeholder="Escreva sua mensagem aqui..."
+                className="p-3 px-4 bg-white outline-none rounded-full w-full"
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                type="text"
+              />
 
-          <button
-            type="submit"
-            onClick={sendMessage}
-            className="p-2 absolute right-4 rounded-full"
-          >
-            <img className="w-6" src="./icon_send.svg" />
-          </button>
+              <button
+                type="submit"
+                onClick={sendMessage}
+                className="p-2 absolute right-4 rounded-full"
+              >
+                <img className="w-6" src="./icon_send.svg" />
+              </button>
+            </div>
+          </div>
         </div>
-
       </div>
-      </div>
-    </div>
+    </main>
   );
 }
 
