@@ -9,8 +9,8 @@ export const TalkArea = ({
 }) => {
   return (
     <div className="lg:w-full flex flex-col space-y-8 px-16 pt-6 pb-6 overflow-y-scroll h-[90vh]" id="messageWindow">
-      {text.map((msg) => (
-        <p
+      {text.map((msg, index) => (
+        <p key={index}
           className={`${
             msg.sender === "Robosch"
               ? "bg-white max-w-prose rounded-bl-none"
