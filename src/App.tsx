@@ -36,7 +36,10 @@ function App() {
   };
 
   useEffect(()=>{
-    
+    const windowMessage = document.getElementById("messageWindow")
+          if (windowMessage){
+            windowMessage.scrollTop = windowMessage.scrollHeight - windowMessage.clientHeight;
+          }
   },[sendMessage, showMessage])
 
   return (
