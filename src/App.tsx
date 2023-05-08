@@ -44,7 +44,7 @@ function App() {
 
   return (
     <main>
-      <div className="flex gap-5 ">
+      <div className="flex font-fonte gap-5 ">
         <Sidebar />
         <div className="pl-72 pb-80 h-screen w-full box-border bg-cover">
           <TalkArea loading={loading} text={showMessage} />

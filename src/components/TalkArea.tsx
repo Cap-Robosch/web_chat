@@ -8,13 +8,13 @@ export const TalkArea = ({
   text: { text: string; sender: string }[];
 }) => {
   return (
-    <div className="lg:w-full flex flex-col space-y-8 px-16 pt-6 pb-6 overflow-y-scroll h-[90vh]" id="messageWindow">
+    <div className="font-fonte lg:w-full flex flex-col space-y-8 px-16 pt-6 pb-6 overflow-y-scroll h-[90vh]" id="messageWindow">
       {text.map((msg, index) => (
         <p key={index}
           className={`${
             msg.sender === "Robosch"
               ? "bg-white max-w-prose rounded-bl-none"
-              : "bg-purple-500 text-white flex self-end max-w-prose rounded-br-none"
+              : "bg-purple text-white flex self-end max-w-prose rounded-br-none"
           } rounded-2xl p-2 px-3 whitespace-pre-line text-sm 2xl:text-base`}
         >
           {msg.text}
