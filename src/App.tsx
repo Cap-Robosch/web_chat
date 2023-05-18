@@ -44,6 +44,8 @@ function App() {
 
   return (
     <main>
+      <div>
+        <div className="w-full h-1.5 bg-gradient-to-r from-purple to-pink"></div>
       <div className="flex font-fonte gap-5 ">
         <Sidebar />
         <div className="pl-72 pb-80 h-screen w-full box-border bg-cover">
@@ -73,6 +75,7 @@ function App() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </main>
   );
