@@ -46,11 +46,11 @@ function App() {
     <main>
       <div>
         <div className="w-full h-1.5 bg-gradient-to-r from-purple to-pink"></div>
-      <div className="flex font-fonte gap-5 ">
+      <div className="flex font-fonte gap-5">
         <Sidebar />
         <div className="pl-72 pb-80 h-screen w-full box-border bg-cover">
           <TalkArea loading={loading} text={showMessage} />
-          <div className="flex gap-2 px-12 fixed bottom-5 right-3 md:w-9/12 2xl:w-10/12">
+          <div className="flex gap-2 md:px-12 fixed bottom-5 right-3 md:w-9/12 2xl:w-10/12">
             <div className="relative w-full flex items-center">
               <input
                 onKeyDown={(e) => {
