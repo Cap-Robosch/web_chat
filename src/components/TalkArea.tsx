@@ -8,7 +8,7 @@ export const TalkArea = ({
   text: { text: string; sender: string }[];
 }) => {
   return (
-    <div className="font-fonte lg:w-full flex flex-col space-y-8 px-16 pt-6 pb-6 overflow-y-scroll h-[90vh]" id="messageWindow">
+    <div className="font-fonte lg:w-full flex flex-col space-y-8 md:px-16 pt-6 pb-6 overflow-y-scroll h-full md:h-[90vh]" id="messageWindow">
       {text.map((msg, index) => (
         <p key={index}
           className={`${

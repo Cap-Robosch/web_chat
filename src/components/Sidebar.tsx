@@ -4,7 +4,7 @@ export const Sidebar = ()=> {
     let [open,setOpen]=useState(false);
 
     return(
-        <div className='font-fonte md:w-72 w-full h-full bg-gray fixed top-0 md:pt-2 flex flex-col'>
+        <div className='font-fonte md:w-72 w-full h-full bg-gray fixed md:top-0 md:pt-2 flex flex-col'>
             <div className='md:bg-gray md:h-full bg-white py-5 px-7'>
                 <div className='flex items-center'>
                     <img src="./RoboschLogoWithName.svg" className="h-10 w-44"/>
