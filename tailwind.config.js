@@ -9,6 +9,7 @@ export default {
       },
       colors:{
         'purple': '#9139D3',
+        'pink': '#ED349B',
       },
       fontFamily:{
         'fonte': 'Poppins, sans-serif',
