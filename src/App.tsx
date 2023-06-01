@@ -50,7 +50,7 @@ function App() {
         <Sidebar />
         <div className="md:pl-72 md:pb-80 h-screen w-full box-border bg-cover">
           <TalkArea loading={loading} text={showMessage} />
-          <div className="flex gap-2 md:px-12 fixed bottom-5 px-4 w-full md:w-9/12 2xl:w-10/12">
+          <div className="flex gap-2 md:px-12 fixed bottom-8 md:bottom-5 px-4 w-full md:w-9/12 2xl:w-10/12">
             <div className="relative w-full flex items-center">
               <input
                 onKeyDown={(e) => {
@@ -59,7 +59,7 @@ function App() {
                   }
                 }}
                 placeholder="Escreva sua mensagem aqui..."
-                className="p-3 px-4 bg-white outline-none rounded-full w-full"
+                className="p-3 px-4 bg-white outline-none rounded-full w-full z-40"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 type="text"
@@ -68,7 +68,7 @@ function App() {
               <button
                 type="submit"
                 onClick={sendMessage}
-                className="p-2 absolute right-4 rounded-full"
+                className="p-2 absolute right-4 rounded-full z-50"
               >
                 <img className="w-6" src="./icon_send.svg" />
               </button>
