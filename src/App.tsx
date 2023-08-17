@@ -16,7 +16,7 @@ function App() {
       setShowMessage((prev) => [...prev, { text: inputMessage, sender: "User" }]);
       setInputMessage("");
       await axios
-        .post("https://8838-194-39-218-13.ngrok-free.app/", {
+        .post("https://porpoise-unbiased-cowbird.ngrok-free.app/", {
           text: inputMessage,
           userId: "vinicius",
         })
