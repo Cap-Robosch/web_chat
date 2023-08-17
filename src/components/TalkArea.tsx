@@ -7,10 +7,19 @@ export const TalkArea = ({
   loading: boolean;
   text: { text: string; sender: string }[];
 }) => {
-  return (
-    <div className="font-fonte lg:w-full flex flex-col space-y-8 px-3 md:px-16 pt-32 md:pt-10 pb-32 lg:pb-6 overflow-y-scroll h-full md:h-[90vh]" id="messageWindow">
+  return text.length == 0 ? (
+    <div
+      className="font-fonte lg:w-full flex flex-col space-y-8 px-3 md:px-16 pt-32 md:pt-10 pb-32 lg:pb-6 items-center h-full md:h-[90vh]"
+      id="messageWindow"
+    >Robosch não possui histórico de conversa, mande sua primeira mensagem!</div>
+  ) : (
+    <div
+      className="font-fonte lg:w-full flex flex-col space-y-8 px-3 md:px-16 pt-32 md:pt-10 pb-32 lg:pb-6 overflow-y-scroll h-full md:h-[90vh]"
+      id="messageWindow"
+    >
       {text.map((msg, index) => (
-        <p key={index}
+        <p
+          key={index}
           className={`${
             msg.sender === "Robosch"
               ? "bg-white max-w-prose rounded-bl-none"
