@@ -16,7 +16,7 @@ function App() {
       setShowMessage((prev) => [...prev, { text: inputMessage, sender: "User" }]);
       setInputMessage("");
       await axios
-        .post("http://localhost:3000/", {
+        .post("https://8838-194-39-218-13.ngrok-free.app/", {
           text: inputMessage,
           userId: "vinicius",
         })
