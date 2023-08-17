@@ -59,7 +59,7 @@ function App() {
                   }
                 }}
                 placeholder="Escreva sua mensagem aqui..."
-                className="p-3 px-4 bg-white outline-none rounded-full w-full z-40"
+                className="p-3 px-4 bg-white outline-none rounded-full w-full z-40 shadow"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 type="text"
