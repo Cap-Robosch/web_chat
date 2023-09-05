@@ -47,7 +47,7 @@ function App() {
       <div>
         <div className="w-full z-50 fixed h-1.5 bg-gradient-to-r from-purple to-pink"></div>
       <div className="flex font-fonte gap-5">
-        <Sidebar />
+        <Sidebar page="Chat" />
         <div className="md:pl-72 md:pb-80 h-screen w-full box-border bg-cover">
           <TalkArea loading={loading} text={showMessage} />
           <div className="flex gap-2 md:px-12 fixed bottom-8 md:bottom-5 px-4 w-full md:w-9/12 2xl:w-10/12">
